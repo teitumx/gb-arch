@@ -7,10 +7,11 @@ class Person implements Observer
     public $experience;
     public $noticeStatus = false;
 
-    public function __construct($name, $email, $noticeStatus)
+    public function __construct($name, $email, $experience, $noticeStatus)
     {
         $this->name = $name;
         $this->email = $email;
+        $this->experience = $experience;
         $this->noticeStatus = $noticeStatus;
 
         Vacancy::getInstance()->addObserver($this);
@@ -18,7 +19,7 @@ class Person implements Observer
 
     public function notice($data)
     {
-        $message = $this->name . ", По вашей подписке появилась новая вакансия $data";
+        $message = $this->name . ", По вашей подписке появилась новая вакансия $data" . PHP_EOL;
 
         if ($this->noticeStatus == true) {
 
